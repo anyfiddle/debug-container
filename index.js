@@ -16,13 +16,18 @@ const { argv } = yargs(hideBin(process.argv))
       description: 'Error message to throw',
       type: 'string',
     },
+    message: {
+      description: 'Message to print',
+      type: 'string',
+    },
   })
   .help()
   .alias('help', 'h');
 
-console.info('Debug container started');
+const { wait = 0, exitCode = 0, error, message = 'Hello Debug' } = argv;
 
-const { wait = 0, exitCode = 0, error } = argv;
+console.info('Debug container started');
+console.info('Message:', message);
 
 if (wait > 0) {
   console.info('Waiting...');
